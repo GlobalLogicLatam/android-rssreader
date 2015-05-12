@@ -1,6 +1,7 @@
-package com.globallogic.rss_reader.adapter;
+package com.globallogic.rss_reader.adapter.recycler;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,10 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
 
     @Override
     public void onBindViewHolder(RSSHolder holder, int position) {
-        holder.mTitle.setText(mDataset.get(position).title);
+        Item item = mDataset.get(position);
+        holder.mTitle.setText(item.title);
+        holder.mDescription.setText(Html.fromHtml(item.getDescription()));
+        holder.pubDate.setText(item.pubDate);
     }
 
     @Override
@@ -53,11 +57,15 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
 
     public class RSSHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTitle;
+        public TextView mDescription;
+        public TextView pubDate;
 
         public RSSHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             mTitle = (TextView) view.findViewById(R.id.item_rss_title);
+            mDescription = (TextView) view.findViewById(R.id.item_rss_description);
+            pubDate = (TextView) view.findViewById(R.id.item_rss_pub_date);
         }
 
         @Override

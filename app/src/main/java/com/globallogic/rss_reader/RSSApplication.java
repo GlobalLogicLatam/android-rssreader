@@ -38,8 +38,10 @@ public class RSSApplication extends Application {
     }
 
     public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null)
+        if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            mRequestQueue.getCache().clear();
+        }
         return mRequestQueue;
     }
 }

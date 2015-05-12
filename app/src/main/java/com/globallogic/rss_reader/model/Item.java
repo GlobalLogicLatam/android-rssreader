@@ -12,4 +12,19 @@ public class Item {
     public String title;
     @Element
     public String link;
+    @Element
+    public String pubDate;
+    @Element
+    public String description;
+
+    public String getDescription() {
+        String descriptionWithoutFooter = "";
+        String readHere = "Leer nota completa aquí";
+        if (description.contains(readHere)) {
+            descriptionWithoutFooter = description.substring(0, description.indexOf(readHere));
+        } else {
+            descriptionWithoutFooter = description.substring(0, description.indexOf("<p>La entrada"));
+        }
+        return descriptionWithoutFooter;
+    }
 }
