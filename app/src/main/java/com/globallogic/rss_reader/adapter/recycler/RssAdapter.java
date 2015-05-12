@@ -33,7 +33,7 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
         Item item = mDataset.get(position);
         holder.mTitle.setText(item.title);
         holder.mDescription.setText(Html.fromHtml(item.getDescription()));
-        holder.pubDate.setText(item.pubDate);
+        holder.pubDate.setText(item.getPubDate());
     }
 
     @Override

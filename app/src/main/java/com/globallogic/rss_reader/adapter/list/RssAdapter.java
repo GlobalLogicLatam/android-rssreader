@@ -41,7 +41,7 @@ public class RssAdapter extends ArrayAdapter<Item> {
         Item item = getItem(position);
         holder.title.setText(item.title);
         holder.description.setText(Html.fromHtml(item.getDescription()));
-        holder.pubDate.setText(item.pubDate);
+        holder.pubDate.setText(item.getPubDate());
         return view;
     }
 
