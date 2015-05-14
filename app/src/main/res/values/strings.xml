@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">RSS</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Club GL</string>
+    <string name="action_recycler_view">Recycler</string>
+    <string name="action_list_view">List</string>
 </resources>
