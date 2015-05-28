@@ -6,27 +6,39 @@
     android:layout_centerVertical="true"
     android:padding="10sp">
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/item_rss_image"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="fitXY" />
-
     <TextView
         android:id="@+id/item_rss_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_rss_image"
-        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:textColor="@color/primary_text"
         android:textSize="24sp"
         tools:text="Title" />
+
+    <View
+        android:id="@+id/item_rss_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/item_rss_title"
+        android:layout_marginBottom="10sp"
+        android:layout_marginTop="5sp"
+        android:background="@color/primary_light" />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/item_rss_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/item_rss_separator"
+        android:background="@color/primary_light"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/item_rss_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_rss_title"
+        android:layout_below="@id/item_rss_image"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="10sp"
         android:textColor="@color/secondary_text"
         android:textSize="14sp"
         android:textStyle="italic"
