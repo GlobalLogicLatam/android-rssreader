@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_rss"
+        android:id="@+id/recycle_view_rss"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
     <ProgressBar
-        android:id="@+id/rv_progress"
+        android:id="@+id/recycle_view_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />

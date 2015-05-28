@@ -1,9 +1,7 @@
 package com.globallogic.rss_reader.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -43,7 +41,7 @@ public class RecyclerViewFragment extends Fragment implements RssService.RSSCall
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycle_view, container, false);
-        mRssRecyclerView = (RecyclerView) view.findViewById(R.id.rv_rss);
+        mRssRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_view_rss);
         mRssRecyclerView.setHasFixedSize(true);
         mRssRecyclerView.addItemDecoration(new DividerItemDecoration(1, Color.BLACK));
         mRssRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -54,7 +52,7 @@ public class RecyclerViewFragment extends Fragment implements RssService.RSSCall
         mAdapter.setOnItemClickListener(this);
         mRssRecyclerView.setAdapter(mAdapter);
 
-        progress = view.findViewById(R.id.rv_progress);
+        progress = view.findViewById(R.id.recycle_view_progress);
 
         RssService.getRSS(this);
         return view;
@@ -93,10 +91,8 @@ public class RecyclerViewFragment extends Fragment implements RssService.RSSCall
     }
 
     @Override
-    public void onItemClickListener(View view, Item item) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(item.link));
-        startActivity(i);
+    public void onItemClickListener(Item item) {
+        callback.openItem(item.link);
     }
 
     @Override

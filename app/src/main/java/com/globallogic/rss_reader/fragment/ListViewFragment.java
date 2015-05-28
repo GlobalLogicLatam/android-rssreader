@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,12 @@ public class ListViewFragment extends Fragment implements RssService.RSSCallback
     private View progress;
     private IListViewFragment callback;
     private RssAdapter adapter;
+    private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            callback.openItem(adapter.getItem(position).link);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class ListViewFragment extends Fragment implements RssService.RSSCallback
         ListView rssList = (ListView) view.findViewById(R.id.list_rss);
         adapter = new RssAdapter(getActivity());
         rssList.setAdapter(adapter);
+        rssList.setOnItemClickListener(onItemClickListener);
         progress = view.findViewById(R.id.list_progress);
         RssService.getRSS(this);
         return view;

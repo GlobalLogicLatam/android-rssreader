@@ -52,7 +52,7 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClickListener(View view, Item item);
+        void onItemClickListener(Item item);
     }
 
     public class RSSHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -71,7 +71,7 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
         @Override
         public void onClick(View v) {
             if (onItemClickListener != null)
-                onItemClickListener.onItemClickListener(v, mDataset.get(getPosition()));
+                onItemClickListener.onItemClickListener(mDataset.get(getPosition()));
         }
     }
 }
