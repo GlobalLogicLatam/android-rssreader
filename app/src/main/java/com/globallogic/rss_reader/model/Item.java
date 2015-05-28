@@ -27,14 +27,31 @@ public class Item {
     public String description;
 
     public String getDescription() {
-        String descriptionWithoutFooter = "";
+        String desc = this.description;
+        desc = removeFooter(desc);
+        desc = removeImage(desc);
+        return desc;
+    }
+
+    private String removeFooter(String desc) {
+        String descriptionWithoutFooter = desc;
         String readHere = "Leer nota completa";
-        if (description.contains(readHere)) {
-            descriptionWithoutFooter = description.substring(0, description.indexOf(readHere));
+        if (desc.contains(readHere)) {
+            descriptionWithoutFooter = desc.substring(0, desc.indexOf(readHere));
         } else {
-            descriptionWithoutFooter = description.substring(0, description.indexOf("<p>La entrada"));
+            descriptionWithoutFooter = desc.substring(0, desc.indexOf("<p>La entrada"));
         }
         return descriptionWithoutFooter;
+    }
+
+    private String removeImage(String desc) {
+        String descriptionWithoutImage = desc;
+        String tagToRemove = "</div><div>";
+        if (desc.contains(tagToRemove)) {
+            descriptionWithoutImage = desc.substring(desc.indexOf(tagToRemove), desc.length());
+            descriptionWithoutImage = "<div>" + descriptionWithoutImage;
+        }
+        return descriptionWithoutImage;
     }
 
     public String getPubDate() {
