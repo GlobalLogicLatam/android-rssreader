@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.globallogic.rss_reader.R;
+import com.globallogic.rss_reader.RSSApplication;
 import com.globallogic.rss_reader.model.Item;
 
 /**
@@ -34,6 +36,7 @@ public class RssAdapter extends ArrayAdapter<Item> {
             holder.title = (TextView) view.findViewById(R.id.item_rss_title);
             holder.description = (TextView) view.findViewById(R.id.item_rss_description);
             holder.pubDate = (TextView) view.findViewById(R.id.item_rss_pub_date);
+            holder.image = (NetworkImageView) view.findViewById(R.id.item_rss_image);
             view.setTag(holder);
         } else {
             holder = (ProductCategoryHolder) view.getTag();
@@ -42,6 +45,13 @@ public class RssAdapter extends ArrayAdapter<Item> {
         holder.title.setText(item.title);
         holder.description.setText(Html.fromHtml(item.getDescription()));
         holder.pubDate.setText(item.getPubDate());
+        if (item.content != null && item.content.url != null) {
+            holder.image.setImageUrl(item.content.url, RSSApplication.getInstance().getImageLoader());
+            holder.image.setContentDescription(item.content.title);
+            holder.image.setVisibility(View.VISIBLE);
+        } else {
+            holder.image.setVisibility(View.GONE);
+        }
         return view;
     }
 
@@ -49,5 +59,6 @@ public class RssAdapter extends ArrayAdapter<Item> {
         TextView title;
         TextView description;
         TextView pubDate;
+        NetworkImageView image;
     }
 }

@@ -3,6 +3,7 @@ package com.globallogic.rss_reader.model;
 import android.util.Log;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.text.ParseException;
@@ -25,6 +26,9 @@ public class Item {
     public String pubDate;
     @Element
     public String description;
+    @Element(name = "content", required = false)
+    @Namespace(reference = "http://search.yahoo.com/mrss/", prefix = "media")
+    public Content content;
 
     public String getDescription() {
         String desc = this.description;

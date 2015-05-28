@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.globallogic.rss_reader.R;
+import com.globallogic.rss_reader.RSSApplication;
 import com.globallogic.rss_reader.model.Item;
 
 import java.util.ArrayList;
@@ -34,6 +36,13 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
         holder.mTitle.setText(item.title);
         holder.mDescription.setText(Html.fromHtml(item.getDescription()));
         holder.pubDate.setText(item.getPubDate());
+        if (item.content != null && item.content.url != null) {
+            holder.image.setImageUrl(item.content.url, RSSApplication.getInstance().getImageLoader());
+            holder.image.setContentDescription(item.content.title);
+            holder.image.setVisibility(View.VISIBLE);
+        } else {
+            holder.image.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -59,6 +68,7 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
         public TextView mTitle;
         public TextView mDescription;
         public TextView pubDate;
+        public NetworkImageView image;
 
         public RSSHolder(View view) {
             super(view);
@@ -66,6 +76,7 @@ public class RssAdapter extends RecyclerView.Adapter<RssAdapter.RSSHolder> {
             mTitle = (TextView) view.findViewById(R.id.item_rss_title);
             mDescription = (TextView) view.findViewById(R.id.item_rss_description);
             pubDate = (TextView) view.findViewById(R.id.item_rss_pub_date);
+            image = (NetworkImageView) view.findViewById(R.id.item_rss_image);
         }
 
         @Override

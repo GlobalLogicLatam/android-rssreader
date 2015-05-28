@@ -6,10 +6,17 @@
     android:layout_centerVertical="true"
     android:padding="10sp">
 
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/item_rss_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="fitXY" />
+
     <TextView
         android:id="@+id/item_rss_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/item_rss_image"
         android:layout_gravity="center_vertical"
         android:textSize="24sp"
         tools:text="Title" />
