@@ -9,7 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.globallogic.rss_reader.Constants;
+import com.globallogic.rss_reader.BuildConfig;
 import com.globallogic.rss_reader.RSSApplication;
 import com.globallogic.rss_reader.model.Item;
 import com.globallogic.rss_reader.model.RSS;
@@ -41,13 +41,13 @@ public class RssService {
         };
 
         RequestQueue requestQueue = RSSApplication.getInstance().getRequestQueue();
-        Cache.Entry entry = requestQueue.getCache().get(Constants.CLUB_FEED);
+        Cache.Entry entry = requestQueue.getCache().get(BuildConfig.CLUB_FEED);
         if (entry != null) {
             String cachedResponse = new String(entry.data);
             setResponse(cachedResponse, callback);
         } else {
             StringRequest request = new StringRequest(Request.Method.GET,
-                    Constants.CLUB_FEED, listener, errorListener);
+                    BuildConfig.CLUB_FEED, listener, errorListener);
 
             request.setRetryPolicy(new DefaultRetryPolicy(5000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,

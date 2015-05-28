@@ -33,7 +33,6 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.globallogic.rss_reader"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode getVersionCode()
@@ -43,6 +42,24 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        def BASE_ENDPOINT = "CLUB_FEED"
+
+        dev {
+            applicationId "com.globallogic.rss_reader.dev"
+            buildConfigField "String", BASE_ENDPOINT, '"http://club.globallogic.com.ar/feed/"'
+        }
+
+        qa {
+            applicationId "com.globallogic.rss_reader.qa"
+            buildConfigField "String", BASE_ENDPOINT, '"http://club.globallogic.com.ar/feed/"'
+        }
+
+        prod {
+            applicationId "com.globallogic.rss_reader"
+            buildConfigField "String", BASE_ENDPOINT, '"http://club.globallogic.com.ar/feed/"'
         }
     }
 }
