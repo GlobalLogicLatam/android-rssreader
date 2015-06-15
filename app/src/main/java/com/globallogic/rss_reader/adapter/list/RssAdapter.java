@@ -19,27 +19,29 @@ import com.globallogic.rss_reader.model.Item;
  */
 public class RssAdapter extends ArrayAdapter<Item> {
     private final Context context;
+    int resource = R.layout.item_rss;
 
-    public RssAdapter(Context context) {
-        super(context, R.layout.item_rss);
+    public RssAdapter(Context context, int resource) {
+        super(context, resource);
         this.context = context;
+        this.resource = resource;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ProductCategoryHolder holder;
+        RssHolder holder;
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            holder = new ProductCategoryHolder();
-            view = inflater.inflate(R.layout.item_rss, parent, false);
+            holder = new RssHolder();
+            view = inflater.inflate(resource, parent, false);
             holder.title = (TextView) view.findViewById(R.id.item_rss_title);
             holder.description = (TextView) view.findViewById(R.id.item_rss_description);
             holder.pubDate = (TextView) view.findViewById(R.id.item_rss_pub_date);
             holder.image = (NetworkImageView) view.findViewById(R.id.item_rss_image);
             view.setTag(holder);
         } else {
-            holder = (ProductCategoryHolder) view.getTag();
+            holder = (RssHolder) view.getTag();
         }
         Item item = getItem(position);
         holder.title.setText(item.title);
@@ -55,7 +57,7 @@ public class RssAdapter extends ArrayAdapter<Item> {
         return view;
     }
 
-    private static class ProductCategoryHolder {
+    private static class RssHolder {
         TextView title;
         TextView description;
         TextView pubDate;

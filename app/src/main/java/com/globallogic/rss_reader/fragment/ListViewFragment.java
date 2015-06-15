@@ -43,7 +43,7 @@ public class ListViewFragment extends Fragment implements RssService.RSSCallback
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_view, container, false);
         ListView rssList = (ListView) view.findViewById(R.id.list_rss);
-        adapter = new RssAdapter(getActivity());
+        adapter = new RssAdapter(getActivity(), R.layout.item_rss);
         rssList.setAdapter(adapter);
         rssList.setOnItemClickListener(onItemClickListener);
         progress = view.findViewById(R.id.list_progress);

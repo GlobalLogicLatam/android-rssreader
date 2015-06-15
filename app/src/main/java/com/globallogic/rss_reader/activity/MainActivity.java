@@ -17,7 +17,7 @@ import com.globallogic.rss_reader.interfaces.IRecyclerViewFragment;
 import com.globallogic.rss_reader.model.Item;
 
 
-public class MainActivity extends AppCompatActivity implements IRecyclerViewFragment, IListViewFragment, RssAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements IRecyclerViewFragment, IListViewFragment {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +58,5 @@ public class MainActivity extends AppCompatActivity implements IRecyclerViewFrag
     @Override
     public void openListView() {
         openFragment(new ListViewFragment());
-    }
-
-    @Override
-    public void onItemClickListener(Item item) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(item.link));
-        startActivity(i);
     }
 }
